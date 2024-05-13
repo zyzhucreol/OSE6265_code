@@ -20,8 +20,12 @@ h2=h1;
 % normalize input directional vector
 r1=r1./sqrt(r1(:,1).^2+r1(:,2).^2+r1(:,3).^2);
 
-grad_g=-sign(R)*[2*x1,2*y1,2*(z1-R)];
-grad_g=grad_g./sqrt(grad_g(:,1).^2+grad_g(:,2).^2+grad_g(:,3).^2);
+if not(isinf(R))
+    grad_g=-sign(R)*[2*x1,2*y1,2*(z1-R)];
+    grad_g=grad_g./sqrt(grad_g(:,1).^2+grad_g(:,2).^2+grad_g(:,3).^2);
+else
+    grad_g=[0,0,1];
+end
 
 r1_dot_g=r1(:,1).*grad_g(:,1)+r1(:,2).*grad_g(:,2)+r1(:,3).*grad_g(:,3);
 r1_dot_g=repmat(r1_dot_g,1,3);
