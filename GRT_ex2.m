@@ -1,4 +1,4 @@
-% Thorlabs LBF254-040 Best Form Lens - N-BK7
+% Thorlabs LA1131 Plano-Convex Lens - N-BK7
 close all;clear;clc;
 %% Aperature and Field setup
 EPD=22.86;
@@ -69,29 +69,3 @@ h_rf_py=squeeze(himg(ceil(length(px)/2),:,plot_ind_hx,plot_ind_hy,:));
 figure;
 plot(px,h_rf_py(:,1));hold on;
 plot(px,h_rf_py(:,2));hold off;
-
-% optical path difference (Reference: Absolute)
-eikonal=t1+t2+t3*n_bk7+t4;
-eikonal=reshape(eikonal,length(px),length(py),length(hx),length(hy));
-eikonal_chief=repmat(eikonal(ceil(length(px)/2),ceil(length(py)/2),:,:),length(px),length(py),1,1);
-OPD=(eikonal_chief-eikonal)/(wavelength_list(ind_wavelength)*1e-3);
-OPD_px=squeeze(OPD(:,ceil(length(py)/2),plot_ind_hx,plot_ind_hy));
-figure;
-plot(px,OPD_px);
-OPD_py=squeeze(OPD(ceil(length(px)/2),:,plot_ind_hx,plot_ind_hy));
-figure;
-plot(py,OPD_py);
-
-% optical path difference (Reference: Exit Pupil)
-dXP=-38.25103;
-[~,~,t_corr]=transfer_XP(h4,r3,Rimg,dXP);
-eikonal=t1+t2+t3*n_bk7+t4+t_corr;
-eikonal=reshape(eikonal,length(px),length(py),length(hx),length(hy));
-eikonal_chief=repmat(eikonal(ceil(length(px)/2),ceil(length(py)/2),:,:),length(px),length(py),1,1);
-OPD=(eikonal_chief-eikonal)/(wavelength_list(ind_wavelength)*1e-3);
-OPD_px=squeeze(OPD(:,ceil(length(py)/2),plot_ind_hx,plot_ind_hy));
-figure;
-plot(px,OPD_px);
-OPD_py=squeeze(OPD(ceil(length(px)/2),:,plot_ind_hx,plot_ind_hy));
-figure;
-plot(py,OPD_py);
