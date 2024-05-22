@@ -69,3 +69,13 @@ h_rf_py=squeeze(himg(ceil(length(px)/2),:,plot_ind_hx,plot_ind_hy,:));
 figure;
 plot(px,h_rf_py(:,1));hold on;
 plot(px,h_rf_py(:,2));hold off;
+
+% Eikonal
+eikonal=n_air*t1+n_air*t2+n_bk7*t3+n_air*t4;
+eikonal=reshape(eikonal,length(px),length(py),length(hx),length(hy),1);
+eikonal=eikonal(:,:,plot_ind_hx,plot_ind_hy);
+OPD=eikonal(ceil(length(px)/2),ceil(length(py)/2))-eikonal;
+OPD_px=squeeze(OPD(:,ceil(length(py)/2)));
+
+figure;
+plot(px,OPD_px);
