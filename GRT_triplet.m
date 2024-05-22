@@ -91,7 +91,7 @@ plot(px,h_rf_py(:,2));hold off;
 % optical path difference (Reference: Exit Pupil)
 dXP=-50.34802; % location of XP
 % dXP=0; % other reference spheres located at arbitrary plane
-[~,~,t_corr]=transfer_XP(h6,r5,Rimg,dXP);
+[~,~,t_corr]=transfer(h6,r5,Rimg,-dXP,dXP);
 eikonal=t1+t2+t3*n_F2+t4*n_K5+t5*n_F2+t6+t_corr;
 eikonal=reshape(eikonal,length(px),length(py),length(hx),length(hy));
 eikonal_chief=repmat(eikonal(ceil(length(px)/2),ceil(length(py)/2),:,:),length(px),length(py),1,1);
