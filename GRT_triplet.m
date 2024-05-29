@@ -135,3 +135,23 @@ spatial_freq=(-floor(size(MTF,1)/2):1:floor(size(MTF,1)/2))*dspatial_freq;
 figure;
 plot(spatial_freq(center_ind:end),abs(MTF(center_ind:end,center_ind)));
 xlim([0,340]);
+
+%% Wavefront and ray aberrations
+hx_from_OPD=-abs(dXP)*diff(OPD_px*(wavelength_list(ind_wavelength)*1e-3))/(px(2)-px(1));
+hy_from_OPD=-abs(dXP)*diff(OPD_py*(wavelength_list(ind_wavelength)*1e-3))/(py(2)-py(1));
+
+figure(2);
+hold on;
+plot(px(1:end-1),hx_from_OPD);hold off;
+figure(3);
+hold on;
+plot(py(1:end-1),hy_from_OPD);hold off;
+
+OPD_from_hx=-cumsum(h_rf_px(:,1)/abs(dXP))*(px(2)-px(1))/(wavelength_list(ind_wavelength)*1e-3);
+OPD_from_hy=-cumsum(h_rf_py(:,2)/abs(dXP))*(py(2)-py(1))/(wavelength_list(ind_wavelength)*1e-3);
+figure(4);
+hold on;
+plot(px,OPD_from_hx);hold off;
+figure(5);
+hold on;
+plot(py,OPD_from_hy);hold off;
