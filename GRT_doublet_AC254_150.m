@@ -1,4 +1,4 @@
-% Thorlabs 18917-S02 Hastings Achromatic Triplet
+% Thorlabs AC254-150 achromatic doublet
 close all;clear;clc;
 %% Aperature and Field setup
 EPD=22.9;
@@ -116,7 +116,7 @@ I_PSF=I_PSF/max(I_PSF(:));
 dfx=1/(1024*2/128);
 fx=(-floor(size(E_XP_pad,1)/2):1:floor(size(E_XP_pad,1)/2))*dfx;
 fy=fx;
-f_number=6.50007;
+f_number=6.500068;
 x_img=fx*2*f_number*wavelength_list(ind_wavelength);
 y_img=fy*2*f_number*wavelength_list(ind_wavelength);
 figure;
