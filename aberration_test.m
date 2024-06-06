@@ -1,4 +1,4 @@
-% Thorlabs 18917-S02 Hastings Achromatic Triplet
+% Aberration test
 close all;clear;clc;
 %% Aperature and Field setup
 EPD=8.0;
