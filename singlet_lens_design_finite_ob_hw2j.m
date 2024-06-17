@@ -33,16 +33,16 @@ n_bk7_list=sqrt(1+B1_bk7*wavelength_list.^2./(wavelength_list.^2-C1_bk7)...
 n_bk7=n_bk7_list(ind_wavelength);
 
 %% Prescriptions
+dobj=300;
 R1=inf;
 d1=0;
-R2=1.543555540465811E+002;
+R2=1.580226640720983E+002;
 d2=4.0; % N-BK7
-R3=-1.543555540465811E+002;
-d3=1.469946770600300E+002;
+R3=-1.508551854126102E+002;
+d3=2.919310516835801E+002;
 Rimg=inf;
 
 %% Constraints on R1 and R2
-% ii=1;
 K=1/150;
 c1=linspace(0,0.04,128);
 c2=(K/(n_bk7-1)-c1)./(c1*d2*(n_bk7-1)/n_bk7-1);
@@ -56,7 +56,10 @@ for ii=1:length(c1)
 %% Initialize paraxial rays
 h1_paraxial=[PX(:),PY(:),zeros(size(PX(:)))];
 t1_paraxial=zeros(size(h1_paraxial,1),1);
-u1_paraxial=[tan(HX(:)),tan(HY(:)),ones(size(HX(:)))];
+% u1_paraxial=[tan(HX(:)),tan(HY(:)),ones(size(HX(:)))];
+Pobj=[-dobj*tan(HX(:)),-dobj*tan(HY(:)),-dobj*ones(size(HX(:)))];
+r1=[PX(:)-Pobj(:,1),PY(:)-Pobj(:,2),-Pobj(:,3)];
+u1_paraxial=r1./repmat(-Pobj(:,3),[1,3]);
 
 %% Trace paraxial rays through the system
 [h2_paraxial,~,t2_paraxial]=transfer_paraxial(h1_paraxial,u1_paraxial,R1,R2,d1);
