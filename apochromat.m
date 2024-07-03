@@ -66,19 +66,19 @@ Ktot=1/400;
 
 % Use glass set SSK5, BAK1, FPL51
 % "Choice of material" matrix
-D=[1,1,1;...
-    1/V_SSK5,1/V_BAK1,1/V_FPL51;...
-    P_SSK5/V_SSK5,P_BAK1/V_BAK1,P_FPL51/V_FPL51];
-K=D\[Ktot;0;0];
-EFL1=1/K(1);
-EFL2=1/K(2);
-EFL3=1/K(3);
-
-% Use glass set N-SF2, N-BK7, S-FPL51 (N-PK52A)
 % D=[1,1,1;...
-%     1/V_BK7,1/V_SF2,1/V_FPL51;...
-%     P_BK7/V_BK7,P_SF2/V_SF2,P_FPL51/V_FPL51];
+%     1/V_SSK5,1/V_BAK1,1/V_FPL51;...
+%     P_SSK5/V_SSK5,P_BAK1/V_BAK1,P_FPL51/V_FPL51];
 % K=D\[Ktot;0;0];
 % EFL1=1/K(1);
 % EFL2=1/K(2);
 % EFL3=1/K(3);
+
+% Use glass set N-SF2, N-BK7, S-FPL51 (N-PK52A)
+D=[1,1,1;...
+    1/V_BK7,1/V_SF2,1/V_FPL51;...
+    P_BK7/V_BK7,P_SF2/V_SF2,P_FPL51/V_FPL51];
+K=D\[Ktot;0;0];
+EFL1=1/K(1);
+EFL2=1/K(2);
+EFL3=1/K(3);
