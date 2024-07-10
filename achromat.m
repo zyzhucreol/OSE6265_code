@@ -27,7 +27,7 @@ V_SF2=(n_SF2_list(2)-1)/(n_SF2_list(1)-n_SF2_list(3));
 V_BK7=(n_BK7_list(2)-1)/(n_BK7_list(1)-n_BK7_list(3));
 
 %% Constraints
-Ktot=1/400;
+Ktot=1/15;
 
 % Use glass set SSK5, BAK1, FPL51
 D=[1,1;...
